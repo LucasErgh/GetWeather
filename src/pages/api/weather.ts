@@ -1,4 +1,4 @@
-import type {NextApiRequest, NextApiResponse} from "next";
+import type { NextApiRequest, NextApiResponse } from "next";
 import { env } from "process";
 
 type WeatherResponseItem = {
@@ -10,8 +10,10 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
 ): Promise<NextApiResponse<WeatherResponseItem> | void> {
+    const lon = -81.54156;
+    const lat = 41.13667;
     const apiKey = env.OPENWEATHER_API_KEY;
-    const url = `https://api.openweathermap.org/data/2.5/forecast?lat=41.13667&lon=-81.54156&appid=${apiKey}&units=imperial`;
+    const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`;
     let data;
     try {
         const response = await fetch(url);
